@@ -12,7 +12,8 @@ public class PlayerAction : MonoBehaviour
     float h;
     float v;
     private bool isHorizonMove;
-
+    Vector3 dirVec;
+    GameObject scanObject;
 
     void Awake()
     {
@@ -65,6 +66,20 @@ public class PlayerAction : MonoBehaviour
             anim.SetInteger("vAxisRaw", (int)v);
             anim.SetTrigger("isChange");
         }
+
+        //Direction
+        if (vDown && v == 1)
+            dirVec = Vector3.up;
+        else if (vDown && v == -1)
+            dirVec = Vector3.down;
+        else if(hDown && h == -1)
+            dirVec = Vector3.left;
+        else if (hDown && h == 1)
+            dirVec = Vector3.right;
+
+        //Scan object
+        if (Input.GetButtonDown("Jump") && scanObject != null)
+            Debug.Log("This is: " + scanObject.name);
     }
 
     private void FixedUpdate()
@@ -74,6 +89,14 @@ public class PlayerAction : MonoBehaviour
         rigid.velocity = moveVec * speed;
 
         //Ray
-        //Debug.DrawRay();
+        Debug.DrawRay(rigid.position, dirVec*0.7f,new Color(0,1,1));
+        RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, dirVec, 0.7f, LayerMask.GetMask("Object"));
+
+        if (rayHit.collider != null)
+        {
+            scanObject = rayHit.collider.gameObject;
+        }
+        else
+            scanObject = null;
     }
 }
