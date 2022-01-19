@@ -4,21 +4,36 @@ using UnityEngine;
 
 public class PlayerAction : MonoBehaviour
 {
+    static public PlayerAction instance;
+
+    public string currentMapName; //현재 플레이어가 있는 맵의 이름(transferMapName)
     public float speed;
 
     Rigidbody2D rigid;
     Animator anim;
-
-    float h;
-    float v;
-    private bool isHorizonMove;
-    Vector3 dirVec;
     GameObject scanObject;
+
+    Vector3 dirVec;
+
+    private float h;
+    private float v;
+    private bool isHorizonMove;
+    
+    
 
     void Awake()
     {
-        rigid = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        if(instance==null) 
+        {
+            DontDestroyOnLoad(this.gameObject); //when scean move, Player not destory 
+            instance = this;
+            rigid = GetComponent<Rigidbody2D>();
+            anim = GetComponent<Animator>();
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     // Update is called once per frame
