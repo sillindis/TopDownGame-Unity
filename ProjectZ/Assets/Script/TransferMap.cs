@@ -7,11 +7,11 @@ public class TransferMap : MonoBehaviour
     //public string transferMapName; //이동할 맵의 이름
     public Transform target;
 
-    private PlayerAction player;
+    private Player player;
     // Start is called before the first frame update
     void Start()
     {
-        player = FindObjectOfType<PlayerAction>();
+        player = FindObjectOfType<Player>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

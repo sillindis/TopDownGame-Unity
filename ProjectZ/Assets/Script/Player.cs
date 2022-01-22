@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAction : MonoBehaviour
+public class Player : MonoBehaviour
 {
-    static public PlayerAction instance;
+    static public Player instance;
 
     public string currentMapName; //현재 플레이어가 있는 맵의 이름(transferMapName)
     public float speed;
@@ -58,19 +58,6 @@ public class PlayerAction : MonoBehaviour
             isHorizonMove = h != 0;
 
         //Animation
-        /*if (anim.GetInteger("hAxisRaw") != h)
-        {
-            anim.SetBool("isChange", true);
-            anim.SetInteger("hAxisRaw", (int)h);
-        }
-        if (anim.GetInteger("vAxisRaw") != v)
-        {
-            anim.SetBool("isChange", true);
-            anim.SetInteger("vAxisRaw", (int)v);
-        }
-        else
-            anim.SetBool("isChange", false);
-        */
         if (anim.GetInteger("hAxisRaw") != h)
         {
             anim.SetInteger("hAxisRaw", (int)h);
