@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     static public Player instance;
 
+
     public string currentMapName; //현재 플레이어가 있는 맵의 이름(transferMapName)
     public float speed;
 
@@ -48,6 +49,8 @@ public class Player : MonoBehaviour
         bool vDown = Input.GetButtonDown("Vertical");
         bool hUp = Input.GetButtonUp("Horizontal");
         bool vUp = Input.GetButtonUp("Vertical");
+
+        
 
         //Check Horizontal Move
         if (hDown)
